@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>팀 발표 순서 추첨</title>
+    <title>냥냥 발표 순서 추첨</title>
     <style>
         * {
             margin: 0;
@@ -13,41 +13,190 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: linear-gradient(180deg, #fff5f5 0%, #ffe4ec 50%, #ffd6e0 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* 배경 발자국들 */
+        body::before {
+            content: '🐾 🐾 🐾 🐾 🐾 🐾 🐾 🐾';
+            position: fixed;
+            top: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 20px;
+            opacity: 0.2;
+            letter-spacing: 30px;
         }
 
         .container {
-            background: linear-gradient(145deg, #2d2d44, #1a1a2e);
+            background: white;
             border-radius: 30px;
             padding: 40px;
-            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5),
-                        inset 0 1px 0 rgba(255,255,255,0.1);
-            max-width: 700px;
+            box-shadow: 0 15px 50px rgba(255, 150, 180, 0.3);
+            max-width: 650px;
             width: 100%;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 3px solid #ffb6c1;
+            position: relative;
+        }
+
+        /* 고양이 귀 장식 */
+        .cat-ears {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 80px;
+        }
+
+        .ear {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #ffb6c1, #ff91a4);
+            border-radius: 50% 50% 0 0;
+            transform: rotate(-15deg);
+            border: 3px solid white;
+            position: relative;
+        }
+
+        .ear:last-child {
+            transform: rotate(15deg);
+        }
+
+        .ear::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: #ffd1dc;
+            border-radius: 50% 50% 0 0;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         h1 {
             text-align: center;
-            color: #ffd700;
-            margin-bottom: 30px;
-            font-size: 2.2rem;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            color: #ff6b8a;
+            margin-bottom: 10px;
+            font-size: 2rem;
+            margin-top: 10px;
         }
 
-        .input-section {
-            margin-bottom: 30px;
+        .subtitle {
+            text-align: center;
+            color: #ffaa00;
+            font-size: 14px;
+            margin-bottom: 25px;
         }
+
+        /* 고양이 얼굴 */
+        .cat-face {
+            width: 120px;
+            height: 100px;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+
+        .cat-face .face {
+            width: 100px;
+            height: 80px;
+            background: #ffeaa7;
+            border-radius: 50%;
+            margin: 0 auto;
+            position: relative;
+            border: 3px solid #f0d78c;
+        }
+
+        .cat-face .eyes {
+            position: absolute;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 25px;
+        }
+
+        .cat-face .eye {
+            width: 12px;
+            height: 18px;
+            background: #333;
+            border-radius: 50%;
+            position: relative;
+            animation: blink 3s infinite;
+        }
+
+        .cat-face .eye::after {
+            content: '';
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+            top: 3px;
+            left: 2px;
+        }
+
+        @keyframes blink {
+            0%, 90%, 100% { transform: scaleY(1); }
+            95% { transform: scaleY(0.1); }
+        }
+
+        .cat-face .nose {
+            position: absolute;
+            top: 45px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 8px;
+            background: #ff91a4;
+            border-radius: 50% 50% 40% 40%;
+        }
+
+        .cat-face .mouth {
+            position: absolute;
+            top: 52px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 10px;
+            border: 2px solid #333;
+            border-top: none;
+            border-radius: 0 0 50% 50%;
+            background: transparent;
+        }
+
+        .cat-face .whiskers {
+            position: absolute;
+            top: 45px;
+            width: 100%;
+        }
+
+        .cat-face .whisker {
+            position: absolute;
+            width: 30px;
+            height: 2px;
+            background: #aaa;
+            border-radius: 2px;
+        }
+
+        .cat-face .whisker:nth-child(1) { left: -5px; top: 0; transform: rotate(-10deg); }
+        .cat-face .whisker:nth-child(2) { left: -8px; top: 10px; transform: rotate(5deg); }
+        .cat-face .whisker:nth-child(3) { right: -5px; top: 0; transform: rotate(10deg); }
+        .cat-face .whisker:nth-child(4) { right: -8px; top: 10px; transform: rotate(-5deg); }
 
         .input-section label {
             display: block;
             margin-bottom: 10px;
-            color: #aaa;
+            color: #ff6b8a;
             font-weight: 600;
         }
 
@@ -60,28 +209,27 @@
         .input-group input {
             flex: 1;
             padding: 14px 18px;
-            border: 2px solid #444;
-            border-radius: 12px;
+            border: 2px solid #ffb6c1;
+            border-radius: 20px;
             font-size: 16px;
-            background: #2a2a3e;
-            color: white;
+            background: #fff9fa;
             transition: all 0.3s;
         }
 
         .input-group input:focus {
             outline: none;
-            border-color: #ffd700;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+            border-color: #ff6b8a;
+            box-shadow: 0 0 15px rgba(255, 107, 138, 0.2);
         }
 
         .input-group input::placeholder {
-            color: #666;
+            color: #ddd;
         }
 
         .btn {
             padding: 14px 28px;
             border: none;
-            border-radius: 12px;
+            border-radius: 20px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
@@ -89,49 +237,53 @@
         }
 
         .btn-add {
-            background: linear-gradient(135deg, #ffd700, #ffaa00);
-            color: #1a1a2e;
+            background: linear-gradient(135deg, #ff91a4, #ff6b8a);
+            color: white;
         }
 
         .btn-add:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+            box-shadow: 0 5px 20px rgba(255, 107, 138, 0.4);
         }
 
         .btn-start {
             width: 100%;
             padding: 18px;
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            background: linear-gradient(135deg, #ff6b8a, #ff4757);
             color: white;
-            font-size: 20px;
+            font-size: 18px;
             margin-top: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-start::before {
+            content: '🐱';
+            margin-right: 10px;
         }
 
         .btn-start:hover:not(:disabled) {
             transform: translateY(-3px);
-            box-shadow: 0 10px 40px rgba(231, 76, 60, 0.5);
+            box-shadow: 0 10px 30px rgba(255, 71, 87, 0.4);
         }
 
         .btn-start:disabled {
-            background: #444;
+            background: #ddd;
             cursor: not-allowed;
             transform: none;
-            box-shadow: none;
         }
 
         .btn-reset {
             width: 100%;
             padding: 14px;
-            background: #333;
+            background: #f5f5f5;
             color: #888;
             margin-top: 10px;
         }
 
         .btn-reset:hover {
-            background: #444;
-            color: #aaa;
+            background: #eee;
         }
 
         .member-list {
@@ -139,7 +291,7 @@
         }
 
         .member-list h3 {
-            color: #888;
+            color: #ff6b8a;
             margin-bottom: 15px;
             font-size: 1rem;
         }
@@ -150,36 +302,36 @@
             gap: 10px;
         }
 
+        /* 물고기 모양 태그 */
         .member-tag {
-            background: linear-gradient(135deg, #3498db, #2980b9);
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
             color: white;
-            padding: 8px 16px;
-            border-radius: 25px;
+            padding: 10px 20px;
+            border-radius: 30px 15px 30px 15px;
             display: flex;
             align-items: center;
             gap: 8px;
             font-weight: 500;
-            animation: popIn 0.3s ease;
-            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            animation: fishSwim 0.5s ease;
+            box-shadow: 0 4px 15px rgba(9, 132, 227, 0.3);
+            position: relative;
         }
 
-        @keyframes popIn {
-            from {
-                opacity: 0;
-                transform: scale(0.5);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+        .member-tag::before {
+            content: '🐟';
+            margin-right: 5px;
+        }
+
+        @keyframes fishSwim {
+            0% { opacity: 0; transform: translateX(-20px); }
+            100% { opacity: 1; transform: translateX(0); }
         }
 
         .member-tag .remove {
             cursor: pointer;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,255,255,0.8);
             font-size: 18px;
             line-height: 1;
-            transition: color 0.2s;
         }
 
         .member-tag .remove:hover {
@@ -188,13 +340,13 @@
 
         .empty-state {
             text-align: center;
-            color: #555;
+            color: #ccc;
             padding: 20px;
+            font-style: italic;
         }
 
-        /* 로또 추첨기 스타일 */
+        /* 로또 추첨기 (고양이 버전) */
         .lotto-machine {
-            margin-top: 30px;
             display: none;
         }
 
@@ -202,223 +354,345 @@
             display: block;
         }
 
-        .machine-container {
-            background: linear-gradient(180deg, #2a2a3e 0%, #1a1a2e 100%);
-            border-radius: 20px;
-            padding: 30px;
-            border: 3px solid #444;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .machine-title {
+        .machine-cat {
             text-align: center;
-            color: #ffd700;
-            font-size: 1.2rem;
             margin-bottom: 20px;
         }
 
-        /* 공이 섞이는 드럼 */
-        .drum {
-            width: 100%;
-            height: 200px;
-            background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a15 100%);
-            border-radius: 100px / 50px;
-            border: 4px solid #555;
+        .big-cat {
+            width: 150px;
+            height: 130px;
+            margin: 0 auto;
             position: relative;
-            overflow: hidden;
-            margin-bottom: 20px;
-            box-shadow: inset 0 20px 60px rgba(0,0,0,0.8);
         }
 
-        .drum.spinning .ball {
-            animation: spin 0.15s linear infinite;
+        .big-cat .body {
+            width: 140px;
+            height: 100px;
+            background: #ffeaa7;
+            border-radius: 70px 70px 50px 50px;
+            margin: 0 auto;
+            position: relative;
+            border: 3px solid #f0d78c;
         }
 
-        .ball {
+        .big-cat .cat-ear-left,
+        .big-cat .cat-ear-right {
             position: absolute;
-            width: 50px;
-            height: 50px;
+            width: 35px;
+            height: 40px;
+            background: #ffeaa7;
+            border: 3px solid #f0d78c;
+            border-radius: 50% 50% 0 0;
+            top: -20px;
+        }
+
+        .big-cat .cat-ear-left {
+            left: 15px;
+            transform: rotate(-15deg);
+        }
+
+        .big-cat .cat-ear-right {
+            right: 15px;
+            transform: rotate(15deg);
+        }
+
+        .big-cat .cat-ear-left::after,
+        .big-cat .cat-ear-right::after {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 20px;
+            background: #ffb6c1;
+            border-radius: 50% 50% 0 0;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .big-cat .eyes {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 35px;
+        }
+
+        .big-cat .eye {
+            width: 18px;
+            height: 25px;
+            background: #333;
             border-radius: 50%;
+            position: relative;
+        }
+
+        .big-cat .eye::after {
+            content: '';
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            background: white;
+            border-radius: 50%;
+            top: 5px;
+            left: 3px;
+        }
+
+        .big-cat.excited .eye {
+            animation: excitedEyes 0.3s infinite alternate;
+        }
+
+        @keyframes excitedEyes {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        .big-cat .nose {
+            position: absolute;
+            top: 55px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 10px;
+            background: #ff91a4;
+            border-radius: 50% 50% 40% 40%;
+        }
+
+        .big-cat .mouth {
+            position: absolute;
+            top: 63px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px;
+        }
+
+        .big-cat .paws {
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 40px;
+        }
+
+        .big-cat .paw {
+            width: 30px;
+            height: 20px;
+            background: #ffeaa7;
+            border-radius: 50%;
+            border: 3px solid #f0d78c;
+            position: relative;
+            animation: pawMove 0.5s infinite alternate;
+        }
+
+        .big-cat .paw:last-child {
+            animation-delay: 0.25s;
+        }
+
+        @keyframes pawMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-5px); }
+        }
+
+        .machine-message {
+            text-align: center;
+            color: #ff6b8a;
+            font-size: 1.3rem;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+
+        /* 물고기 바구니 (드럼 대체) */
+        .fish-basket {
+            width: 100%;
+            max-width: 400px;
+            height: 150px;
+            background: linear-gradient(180deg, #e8d4a8, #d4b896);
+            border-radius: 10px 10px 50px 50px;
+            margin: 0 auto 20px;
+            position: relative;
+            border: 4px solid #c9a87c;
+            overflow: hidden;
+            box-shadow: inset 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .fish-basket::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.3), transparent);
+        }
+
+        .fish-basket.shaking {
+            animation: basketShake 0.1s infinite;
+        }
+
+        @keyframes basketShake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-2deg); }
+            75% { transform: rotate(2deg); }
+        }
+
+        .fish-ball {
+            position: absolute;
+            width: 55px;
+            height: 35px;
+            border-radius: 50% 20% 50% 20%;
             display: flex;
             justify-content: center;
             align-items: center;
             font-weight: bold;
-            font-size: 11px;
+            font-size: 10px;
             color: white;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-            box-shadow: inset -3px -3px 10px rgba(0,0,0,0.4),
-                        inset 3px 3px 10px rgba(255,255,255,0.2),
-                        0 5px 15px rgba(0,0,0,0.3);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
             transition: all 0.3s;
             text-align: center;
-            padding: 5px;
-            word-break: keep-all;
-            overflow: hidden;
         }
 
-        @keyframes spin {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(20px, -15px) rotate(90deg); }
-            50% { transform: translate(-10px, 10px) rotate(180deg); }
-            75% { transform: translate(-20px, -10px) rotate(270deg); }
-            100% { transform: translate(0, 0) rotate(360deg); }
-        }
-
-        .ball.selected {
-            animation: popOut 0.5s ease forwards;
-        }
-
-        @keyframes popOut {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.3); }
-            100% { transform: scale(0); opacity: 0; }
-        }
-
-        /* 추출구 */
-        .chute {
-            width: 80px;
-            height: 30px;
-            background: linear-gradient(180deg, #333, #222);
-            border-radius: 0 0 40px 40px;
-            margin: 0 auto;
-            position: relative;
-            border: 3px solid #555;
-            border-top: none;
-        }
-
-        .chute::before {
+        .fish-ball::before {
             content: '';
             position: absolute;
-            top: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 10px;
-            background: #222;
-            border-radius: 50%;
+            right: -8px;
+            width: 15px;
+            height: 20px;
+            background: inherit;
+            border-radius: 0 50% 50% 0;
+            clip-path: polygon(0 50%, 100% 0, 100% 100%);
         }
 
-        /* 결과 표시 영역 */
-        .result-track {
+        .fish-ball.caught {
+            animation: fishCaught 0.5s ease forwards;
+        }
+
+        @keyframes fishCaught {
+            0% { transform: scale(1) rotate(0); }
+            50% { transform: scale(1.2) rotate(10deg) translateY(-30px); }
+            100% { transform: scale(0) rotate(20deg) translateY(-50px); opacity: 0; }
+        }
+
+        /* 물고기 색상 */
+        .fish-color-1 { background: linear-gradient(135deg, #ff6b6b, #ee5a5a); }
+        .fish-color-2 { background: linear-gradient(135deg, #74b9ff, #0984e3); }
+        .fish-color-3 { background: linear-gradient(135deg, #55efc4, #00b894); }
+        .fish-color-4 { background: linear-gradient(135deg, #ffeaa7, #fdcb6e); }
+        .fish-color-5 { background: linear-gradient(135deg, #a29bfe, #6c5ce7); }
+        .fish-color-6 { background: linear-gradient(135deg, #fd79a8, #e84393); }
+        .fish-color-7 { background: linear-gradient(135deg, #81ecec, #00cec9); }
+        .fish-color-8 { background: linear-gradient(135deg, #fab1a0, #e17055); }
+        .fish-color-9 { background: linear-gradient(135deg, #dfe6e9, #b2bec3); }
+        .fish-color-10 { background: linear-gradient(135deg, #ffc048, #ff9f1a); }
+
+        /* 결과 접시들 */
+        .result-dishes {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
             flex-wrap: wrap;
-            margin-top: 30px;
-            min-height: 100px;
+            margin-top: 25px;
             padding: 20px;
-            background: linear-gradient(180deg, #1a1a2e, #2a2a3e);
-            border-radius: 15px;
-            border: 2px solid #444;
         }
 
-        .result-slot {
-            width: 70px;
-            height: 90px;
-            background: linear-gradient(180deg, #222, #1a1a2e);
-            border-radius: 10px;
-            border: 2px dashed #444;
+        .dish {
+            width: 75px;
+            height: 85px;
+            background: linear-gradient(180deg, #fff, #f5f5f5);
+            border-radius: 50%;
+            border: 3px solid #ddd;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        .result-slot .order-label {
+        .dish .order-num {
             position: absolute;
-            top: -12px;
-            background: #ffd700;
-            color: #1a1a2e;
-            padding: 2px 10px;
-            border-radius: 10px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .result-slot.filled {
-            border: 2px solid #ffd700;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-        }
-
-        .result-ball {
-            width: 55px;
-            height: 55px;
+            top: -10px;
+            background: #ff6b8a;
+            color: white;
+            width: 25px;
+            height: 25px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
+            font-size: 12px;
             font-weight: bold;
-            font-size: 11px;
+            border: 2px solid white;
+        }
+
+        .dish.filled {
+            border-color: #ff6b8a;
+            background: linear-gradient(180deg, #fff5f7, #ffe8ec);
+        }
+
+        .result-fish {
+            width: 50px;
+            height: 30px;
+            border-radius: 50% 20% 50% 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 9px;
             color: white;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-            box-shadow: inset -3px -3px 10px rgba(0,0,0,0.4),
-                        inset 3px 3px 10px rgba(255,255,255,0.2),
-                        0 5px 15px rgba(0,0,0,0.3);
-            animation: dropIn 0.5s ease;
-            text-align: center;
-            padding: 5px;
-            word-break: keep-all;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            animation: fishLand 0.5s ease;
+            position: relative;
         }
 
-        @keyframes dropIn {
-            0% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
-            60% {
-                transform: translateY(10px);
-            }
-            80% {
-                transform: translateY(-5px);
-            }
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
+        .result-fish::before {
+            content: '';
+            position: absolute;
+            right: -7px;
+            width: 12px;
+            height: 16px;
+            background: inherit;
+            border-radius: 0 50% 50% 0;
+            clip-path: polygon(0 50%, 100% 0, 100% 100%);
         }
 
-        /* 공 색상 배열 */
-        .ball-color-1 { background: linear-gradient(135deg, #e74c3c, #c0392b); }
-        .ball-color-2 { background: linear-gradient(135deg, #3498db, #2980b9); }
-        .ball-color-3 { background: linear-gradient(135deg, #2ecc71, #27ae60); }
-        .ball-color-4 { background: linear-gradient(135deg, #f39c12, #d68910); }
-        .ball-color-5 { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
-        .ball-color-6 { background: linear-gradient(135deg, #1abc9c, #16a085); }
-        .ball-color-7 { background: linear-gradient(135deg, #e91e63, #c2185b); }
-        .ball-color-8 { background: linear-gradient(135deg, #00bcd4, #0097a7); }
-        .ball-color-9 { background: linear-gradient(135deg, #ff5722, #e64a19); }
-        .ball-color-10 { background: linear-gradient(135deg, #607d8b, #455a64); }
+        @keyframes fishLand {
+            0% { transform: translateY(-80px) rotate(360deg); opacity: 0; }
+            60% { transform: translateY(5px) rotate(0); }
+            80% { transform: translateY(-3px); }
+            100% { transform: translateY(0); opacity: 1; }
+        }
 
-        /* 완료 메시지 */
-        .complete-message {
+        /* 완료 화면 */
+        .complete-section {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 25px;
             display: none;
         }
 
-        .complete-message.show {
+        .complete-section.show {
             display: block;
-            animation: fadeIn 0.5s ease;
+            animation: popUp 0.5s ease;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes popUp {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
         }
 
-        .complete-message h2 {
-            color: #ffd700;
+        .complete-section h2 {
+            color: #ff6b8a;
             font-size: 1.5rem;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
-        .complete-message p {
-            color: #888;
+        .complete-section p {
+            color: #aaa;
+            font-size: 14px;
         }
 
-        /* 순서 목록 (최종 결과) */
+        /* 최종 결과 */
         .final-result {
             margin-top: 20px;
             display: none;
@@ -429,9 +703,10 @@
         }
 
         .final-result h3 {
-            color: #ffd700;
+            color: #ff6b8a;
             text-align: center;
             margin-bottom: 15px;
+            font-size: 1.1rem;
         }
 
         .final-list {
@@ -442,70 +717,132 @@
             display: flex;
             align-items: center;
             padding: 12px 20px;
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 10px;
+            background: linear-gradient(135deg, #fff5f7, #ffe8ec);
+            border-radius: 15px;
             margin-bottom: 8px;
-            border-left: 4px solid #ffd700;
+            border-left: 4px solid #ff6b8a;
+            opacity: 0;
+            animation: slideIn 0.4s ease forwards;
+        }
+
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateX(-20px); }
+            100% { opacity: 1; transform: translateX(0); }
         }
 
         .final-item .num {
-            width: 35px;
-            height: 35px;
-            background: #ffd700;
-            color: #1a1a2e;
+            width: 30px;
+            height: 30px;
+            background: #ff6b8a;
+            color: white;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             font-weight: bold;
+            font-size: 14px;
             margin-right: 15px;
         }
 
         .final-item .name {
-            color: white;
+            color: #333;
             font-size: 16px;
+            font-weight: 500;
+        }
+
+        .final-item .name::before {
+            content: '🐟 ';
+        }
+
+        /* 고양이 발바닥 장식 */
+        .paw-prints {
+            text-align: center;
+            margin-top: 20px;
+            opacity: 0.5;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🎰 팀 발표 순서 추첨</h1>
-        
+        <!-- 고양이 귀 장식 -->
+        <div class="cat-ears">
+            <div class="ear"></div>
+            <div class="ear"></div>
+        </div>
+
+        <h1>냥냥 발표 순서 추첨</h1>
+        <p class="subtitle">~ 고양이가 물고기를 잡아드려요 ~</p>
+
+        <!-- 메인 고양이 얼굴 -->
+        <div class="cat-face">
+            <div class="face">
+                <div class="eyes">
+                    <div class="eye"></div>
+                    <div class="eye"></div>
+                </div>
+                <div class="nose"></div>
+                <div class="mouth"></div>
+                <div class="whiskers">
+                    <div class="whisker"></div>
+                    <div class="whisker"></div>
+                    <div class="whisker"></div>
+                    <div class="whisker"></div>
+                </div>
+            </div>
+        </div>
+
         <div class="input-section" id="inputSection">
-            <label>팀원 이름 추가</label>
+            <label>🐟 팀원 이름 추가</label>
             <div class="input-group">
-                <input type="text" id="memberInput" placeholder="이름을 입력하세요" onkeypress="handleKeyPress(event)">
+                <input type="text" id="memberInput" placeholder="이름을 입력하세요 냥~" onkeypress="handleKeyPress(event)">
                 <button class="btn btn-add" onclick="addMember()">추가</button>
             </div>
             
             <div class="member-list">
-                <h3>참가자 목록 (<span id="memberCount">0</span>명)</h3>
+                <h3>물고기 목록 (<span id="memberCount">0</span>마리)</h3>
                 <div class="members" id="memberTags">
-                    <div class="empty-state">아직 추가된 팀원이 없습니다</div>
+                    <div class="empty-state">아직 물고기가 없어요... 🐱</div>
                 </div>
             </div>
 
             <button class="btn btn-start" id="startBtn" onclick="startLotto()" disabled>
-                🎱 추첨 시작
+                추첨 시작 냥!
             </button>
             <button class="btn btn-reset" onclick="resetAll()">
                 초기화
             </button>
         </div>
 
-        <!-- 로또 추첨기 -->
+        <!-- 추첨 화면 -->
         <div class="lotto-machine" id="lottoMachine">
-            <div class="machine-container">
-                <div class="machine-title">🎱 추첨 중...</div>
-                <div class="drum" id="drum"></div>
-                <div class="chute"></div>
+            <div class="machine-cat">
+                <div class="big-cat" id="bigCat">
+                    <div class="body">
+                        <div class="cat-ear-left"></div>
+                        <div class="cat-ear-right"></div>
+                        <div class="eyes">
+                            <div class="eye"></div>
+                            <div class="eye"></div>
+                        </div>
+                        <div class="nose"></div>
+                        <div class="mouth" id="catMouth">ω</div>
+                    </div>
+                    <div class="paws">
+                        <div class="paw"></div>
+                        <div class="paw"></div>
+                    </div>
+                </div>
             </div>
 
-            <div class="result-track" id="resultTrack"></div>
+            <p class="machine-message" id="machineMessage">물고기를 고르는 중이다냥... 🐾</p>
 
-            <div class="complete-message" id="completeMessage">
-                <h2>🎉 추첨 완료!</h2>
-                <p>발표 순서가 결정되었습니다</p>
+            <div class="fish-basket" id="fishBasket"></div>
+
+            <div class="result-dishes" id="resultDishes"></div>
+
+            <div class="complete-section" id="completeSection">
+                <h2>🎉 추첨 완료다냥!</h2>
+                <p>맛있는 물고기 순서가 정해졌어요</p>
             </div>
 
             <div class="final-result" id="finalResult">
@@ -514,8 +851,10 @@
             </div>
 
             <button class="btn btn-start" onclick="resetAll()" style="margin-top: 20px;">
-                🔄 다시 추첨하기
+                🔄 다시 추첨하기 냥!
             </button>
+
+            <div class="paw-prints">🐾 🐾 🐾</div>
         </div>
     </div>
 
@@ -525,9 +864,18 @@
         let selectedOrder = [];
         let isDrawing = false;
 
-        const ballColors = [
-            'ball-color-1', 'ball-color-2', 'ball-color-3', 'ball-color-4', 'ball-color-5',
-            'ball-color-6', 'ball-color-7', 'ball-color-8', 'ball-color-9', 'ball-color-10'
+        const fishColors = [
+            'fish-color-1', 'fish-color-2', 'fish-color-3', 'fish-color-4', 'fish-color-5',
+            'fish-color-6', 'fish-color-7', 'fish-color-8', 'fish-color-9', 'fish-color-10'
+        ];
+
+        const catMessages = [
+            "어떤 물고기를 잡을까냥... 🤔",
+            "냠냠... 맛있겠다냥! 😋",
+            "이 물고기다냥! 🐟",
+            "잡았다냥~! 🐱",
+            "다음 물고기는... 🎣",
+            "고르는 중이다냥... 🐾"
         ];
 
         function handleKeyPress(event) {
@@ -541,12 +889,12 @@
             const name = input.value.trim();
             
             if (name === '') {
-                alert('이름을 입력해주세요!');
+                alert('이름을 입력해주세요 냥!');
                 return;
             }
             
             if (members.includes(name)) {
-                alert('이미 추가된 이름입니다!');
+                alert('이미 추가된 이름이다냥!');
                 return;
             }
             
@@ -570,7 +918,7 @@
             startBtn.disabled = members.length < 2;
             
             if (members.length === 0) {
-                tagsContainer.innerHTML = '<div class="empty-state">아직 추가된 팀원이 없습니다</div>';
+                tagsContainer.innerHTML = '<div class="empty-state">아직 물고기가 없어요... 🐱</div>';
                 return;
             }
             
@@ -584,129 +932,132 @@
 
         function startLotto() {
             if (members.length < 2) {
-                alert('최소 2명 이상의 팀원이 필요합니다!');
+                alert('최소 2마리 이상의 물고기가 필요하다냥!');
                 return;
             }
 
-            // UI 전환
             document.getElementById('inputSection').style.display = 'none';
             document.getElementById('lottoMachine').classList.add('active');
+            document.querySelector('.cat-face').style.display = 'none';
 
-            // 초기화
             remainingMembers = [...members];
             selectedOrder = [];
             isDrawing = true;
 
-            // 결과 슬롯 생성
-            createResultSlots();
+            createResultDishes();
+            createFish();
 
-            // 드럼에 공 배치
-            createBalls();
-
-            // 추첨 시작
             setTimeout(() => {
-                drawNextBall();
+                catchNextFish();
             }, 1000);
         }
 
-        function createResultSlots() {
-            const track = document.getElementById('resultTrack');
-            track.innerHTML = members.map((_, idx) => `
-                <div class="result-slot" id="slot-${idx}">
-                    <span class="order-label">${idx + 1}번</span>
+        function createResultDishes() {
+            const dishes = document.getElementById('resultDishes');
+            dishes.innerHTML = members.map((_, idx) => `
+                <div class="dish" id="dish-${idx}">
+                    <span class="order-num">${idx + 1}</span>
                 </div>
             `).join('');
         }
 
-        function createBalls() {
-            const drum = document.getElementById('drum');
-            drum.innerHTML = '';
+        function createFish() {
+            const basket = document.getElementById('fishBasket');
+            basket.innerHTML = '';
 
             remainingMembers.forEach((name, idx) => {
-                const ball = document.createElement('div');
-                ball.className = `ball ${ballColors[idx % ballColors.length]}`;
-                ball.id = `ball-${idx}`;
-                ball.textContent = name;
+                const fish = document.createElement('div');
+                fish.className = `fish-ball ${fishColors[members.indexOf(name) % fishColors.length]}`;
+                fish.id = `fish-${idx}`;
+                fish.textContent = name;
                 
-                // 랜덤 위치
-                const x = 30 + Math.random() * (drum.offsetWidth - 100);
-                const y = 30 + Math.random() * (drum.offsetHeight - 100);
-                ball.style.left = x + 'px';
-                ball.style.top = y + 'px';
+                const x = 20 + Math.random() * (basket.offsetWidth - 80);
+                const y = 20 + Math.random() * (basket.offsetHeight - 60);
+                fish.style.left = x + 'px';
+                fish.style.top = y + 'px';
                 
-                drum.appendChild(ball);
+                basket.appendChild(fish);
             });
         }
 
-        function drawNextBall() {
+        function catchNextFish() {
             if (remainingMembers.length === 0) {
                 finishDrawing();
                 return;
             }
 
-            const drum = document.getElementById('drum');
-            drum.classList.add('spinning');
+            const basket = document.getElementById('fishBasket');
+            const bigCat = document.getElementById('bigCat');
+            const message = document.getElementById('machineMessage');
+            const catMouth = document.getElementById('catMouth');
 
-            // 회전 시간 (랜덤하게)
-            const spinTime = 1500 + Math.random() * 1000;
+            // 고양이 흥분 모드
+            bigCat.classList.add('excited');
+            basket.classList.add('shaking');
+            message.textContent = catMessages[Math.floor(Math.random() * catMessages.length)];
+            catMouth.textContent = '∀';
+
+            const shakeTime = 1200 + Math.random() * 800;
 
             setTimeout(() => {
-                drum.classList.remove('spinning');
+                basket.classList.remove('shaking');
+                catMouth.textContent = '▽';
 
-                // 랜덤하게 하나 선택
+                // 랜덤 선택
                 const randomIdx = Math.floor(Math.random() * remainingMembers.length);
                 const selectedName = remainingMembers[randomIdx];
-                const selectedColorClass = ballColors[members.indexOf(selectedName) % ballColors.length];
+                const selectedColorClass = fishColors[members.indexOf(selectedName) % fishColors.length];
 
-                // 드럼에서 공 제거 애니메이션
-                const balls = drum.querySelectorAll('.ball');
-                balls.forEach(ball => {
-                    if (ball.textContent === selectedName) {
-                        ball.classList.add('selected');
+                message.textContent = `${selectedName} 물고기를 잡았다냥! 🐟`;
+
+                // 물고기 잡기 애니메이션
+                const fishes = basket.querySelectorAll('.fish-ball');
+                fishes.forEach(fish => {
+                    if (fish.textContent === selectedName) {
+                        fish.classList.add('caught');
                     }
                 });
 
-                // 결과 슬롯에 공 추가
                 setTimeout(() => {
-                    const slotIdx = selectedOrder.length;
-                    const slot = document.getElementById(`slot-${slotIdx}`);
+                    const dishIdx = selectedOrder.length;
+                    const dish = document.getElementById(`dish-${dishIdx}`);
                     
-                    const resultBall = document.createElement('div');
-                    resultBall.className = `result-ball ${selectedColorClass}`;
-                    resultBall.textContent = selectedName;
-                    slot.appendChild(resultBall);
-                    slot.classList.add('filled');
+                    const resultFish = document.createElement('div');
+                    resultFish.className = `result-fish ${selectedColorClass}`;
+                    resultFish.textContent = selectedName;
+                    dish.appendChild(resultFish);
+                    dish.classList.add('filled');
 
-                    // 배열 업데이트
                     selectedOrder.push(selectedName);
                     remainingMembers = remainingMembers.filter(m => m !== selectedName);
 
-                    // 드럼 공 재배치
-                    createBalls();
+                    bigCat.classList.remove('excited');
+                    catMouth.textContent = 'ω';
 
-                    // 다음 공 추첨
+                    createFish();
+
                     setTimeout(() => {
-                        drawNextBall();
-                    }, 800);
+                        catchNextFish();
+                    }, 700);
 
                 }, 500);
 
-            }, spinTime);
+            }, shakeTime);
         }
 
         function finishDrawing() {
             isDrawing = false;
 
-            // 완료 메시지 표시
-            document.getElementById('completeMessage').classList.add('show');
+            document.getElementById('machineMessage').textContent = '모든 물고기를 잡았다냥! 🎉';
+            document.getElementById('catMouth').textContent = '▽';
+            document.getElementById('completeSection').classList.add('show');
 
-            // 최종 결과 목록 표시
             setTimeout(() => {
                 const finalResult = document.getElementById('finalResult');
                 const finalList = document.getElementById('finalList');
 
                 finalList.innerHTML = selectedOrder.map((name, idx) => `
-                    <li class="final-item" style="animation: fadeIn 0.5s ease ${idx * 0.1}s forwards; opacity: 0;">
+                    <li class="final-item" style="animation-delay: ${idx * 0.1}s">
                         <div class="num">${idx + 1}</div>
                         <div class="name">${name}</div>
                     </li>
@@ -714,9 +1065,6 @@
 
                 finalResult.classList.add('show');
             }, 500);
-
-            // 기계 타이틀 변경
-            document.querySelector('.machine-title').textContent = '🎉 추첨 완료!';
         }
 
         function resetAll() {
@@ -727,15 +1075,15 @@
 
             updateMemberDisplay();
 
-            // UI 원래대로
             document.getElementById('inputSection').style.display = 'block';
             document.getElementById('lottoMachine').classList.remove('active');
-            document.getElementById('completeMessage').classList.remove('show');
+            document.getElementById('completeSection').classList.remove('show');
             document.getElementById('finalResult').classList.remove('show');
-            document.querySelector('.machine-title').textContent = '🎱 추첨 중...';
-            document.getElementById('drum').innerHTML = '';
-            document.getElementById('resultTrack').innerHTML = '';
+            document.getElementById('machineMessage').textContent = '물고기를 고르는 중이다냥... 🐾';
+            document.getElementById('fishBasket').innerHTML = '';
+            document.getElementById('resultDishes').innerHTML = '';
             document.getElementById('finalList').innerHTML = '';
+            document.querySelector('.cat-face').style.display = 'block';
         }
     </script>
 </body>
